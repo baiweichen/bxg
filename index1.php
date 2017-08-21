@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: HUCC
- * Date: 2017/8/19
- * Time: 10:23
- */
+
 header("content-type:text/html;charset=utf-8");
 
 //不能写死， 不能仅仅include index.html
