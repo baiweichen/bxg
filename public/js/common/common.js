@@ -2,7 +2,25 @@
  * Created by Administrator on 2017/8/20.
  */
 
-define(["jquery", "template", "jquery_cookie"], function ($, template) {
+define(["jquery", "template","nprogress", "jquery_cookie"], function ($, template,np) {
+  
+  //nprogress进度条，提升用户体验
+  np.start();
+  setTimeout(function () {
+      np.done();
+  },300)
+  
+  //为document添加ajaxStart
+  $(document).ajaxStart(function () {
+      $(".mask").show();
+  });
+  $(document).ajaxStop(function () {
+    setTimeout(function () {
+      $(".mask").hide();
+    },300)
+  })
+  
+  
   //只要不是登录页，就需要用到模版引擎渲染头像和名字
   if (location.pathname != "/login") {
     
@@ -33,6 +51,16 @@ define(["jquery", "template", "jquery_cookie"], function ($, template) {
   
   //根据路径设置侧边栏高亮
   var address = location.pathname;
+  var addressObj = {
+    "/teacher/add":"/teacher/list",
+    "/repass":"/index/index",
+    "/index/settings":"/index/index",
+    "/category/add":"/category/list",
+    "/course/step1":"/course/add",
+    "/course/step2":"/course/add",
+    "/course/step3":"/course/add",
+  };
+  address = addressObj[address] || address;
   $("#nav-list a").each(function () {
     var $that = $(this);
     $that.removeClass("active");
@@ -40,6 +68,7 @@ define(["jquery", "template", "jquery_cookie"], function ($, template) {
       $that.addClass("active");
     }
     
+          
     
   });
   //点击切换二级菜单

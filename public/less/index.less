@@ -74,7 +74,22 @@
         }
     }
 }
-
+.mask{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.4);
+    position: fixed;
+    z-index: 999;
+    display: none;
+    img{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+}
 // 主体
 .main {
     min-width: 844px;
